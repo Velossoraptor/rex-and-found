@@ -1,2 +1,2 @@
 # Contributors:
-- Talia Olsen
+- Talia Olsen :)
