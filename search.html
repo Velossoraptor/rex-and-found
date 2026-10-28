@@ -25,8 +25,8 @@
       </a>
 
       <nav class="main-nav" aria-label="Main navigation">
-        <a href="index.html" class="active">Home</a>
-        <a href="search.html">Search posts</a>
+        <a href="index.html">Home</a>
+        <a href="search.html" class="active">Search posts</a>
         <a href="about.html">About</a>
         <a href="contact.html">Contact</a>
       </nav>
@@ -41,7 +41,141 @@
   </header>
 
 <main>
-    
+  <section class="search-hero">
+    <div class="container">
+      <p class="eyebrow">The Rexburg Directory</p>
+      <h1>Find what you're looking for.</h1>
+      <p class="search-lead">Search every lost and found report from around our community.</p>
+      <form class="search-bar" action="search.html" role="search">
+        <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <input type="search" name="q" placeholder="Search items, locations, or keywords..." aria-label="Search posts">
+        <button class="btn btn-orange" type="submit">Search</button>
+      </form>
+    </div>
+  </section>
+
+  <section class="results container">
+    <div class="results-bar">
+      <div class="filter-tabs" role="group" aria-label="Filter by status">
+        <button type="button" aria-pressed="true">All</button>
+        <button type="button" aria-pressed="false">Lost</button>
+        <button type="button" aria-pressed="false">Found</button>
+      </div>
+      <select class="filter-select" aria-label="Filter by category">
+        <option>All categories</option>
+        <option>Bags</option>
+        <option>Electronics</option>
+        <option>Keys</option>
+        <option>Clothing</option>
+        <option>Other</option>
+      </select>
+      <p class="results-count">6 posts</p>
+    </div>
+
+    <div class="post-grid">
+      <article class="post-card">
+        <a href="#">
+          <div class="post-img img-1">
+            <span class="badge badge-lost">Lost</span>
+          </div>
+          <div class="post-body">
+            <p class="post-cat">Bags</p>
+            <h3>Forest green backpack</h3>
+            <p class="post-meta post-loc">BYU&ndash;Idaho Library</p>
+            <div class="post-foot">
+              <span class="post-meta post-time">Today, 11:42 AM</span>
+              <span class="post-go" aria-hidden="true"></span>
+            </div>
+          </div>
+        </a>
+      </article>
+
+      <article class="post-card">
+        <a href="#">
+          <div class="post-img img-3">
+            <span class="badge badge-found">Found</span>
+          </div>
+          <div class="post-body">
+            <p class="post-cat">Electronics</p>
+            <h3>Black smartphone</h3>
+            <p class="post-meta post-loc">Porter Park</p>
+            <div class="post-foot">
+              <span class="post-meta post-time">Today, 9:15 AM</span>
+              <span class="post-go" aria-hidden="true"></span>
+            </div>
+          </div>
+        </a>
+      </article>
+
+      <article class="post-card">
+        <a href="#">
+          <div class="post-img img-2">
+            <span class="badge badge-lost">Lost</span>
+          </div>
+          <div class="post-body">
+            <p class="post-cat">Keys</p>
+            <h3>Silver key ring</h3>
+            <p class="post-meta post-loc">Downtown Main Street</p>
+            <div class="post-foot">
+              <span class="post-meta post-time">Yesterday</span>
+              <span class="post-go" aria-hidden="true"></span>
+            </div>
+          </div>
+        </a>
+      </article>
+
+      <article class="post-card">
+        <a href="#">
+          <div class="post-img img-4">
+            <span class="badge badge-found">Found</span>
+          </div>
+          <div class="post-body">
+            <p class="post-cat">Bags</p>
+            <h3>Blue hiking bag</h3>
+            <p class="post-meta post-loc">Smith Park</p>
+            <div class="post-foot">
+              <span class="post-meta post-time">Yesterday</span>
+              <span class="post-go" aria-hidden="true"></span>
+            </div>
+          </div>
+        </a>
+      </article>
+
+      <article class="post-card">
+        <a href="#">
+          <div class="post-img img-3">
+            <span class="badge badge-lost">Lost</span>
+          </div>
+          <div class="post-body">
+            <p class="post-cat">Electronics</p>
+            <h3>AirPods in tan case</h3>
+            <p class="post-meta post-loc">Hart Building</p>
+            <div class="post-foot">
+              <span class="post-meta post-time">Feb 12</span>
+              <span class="post-go" aria-hidden="true"></span>
+            </div>
+          </div>
+        </a>
+      </article>
+
+      <article class="post-card">
+        <a href="#">
+          <div class="post-img img-2">
+            <span class="badge badge-picked">&#10003; Picked up</span>
+          </div>
+          <div class="post-body">
+            <p class="post-cat">Clothing</p>
+            <h3>Cream knit scarf</h3>
+            <p class="post-meta post-loc">Rexburg Tabernacle</p>
+            <div class="post-foot">
+              <span class="post-meta post-time">Feb 11</span>
+              <span class="post-go" aria-hidden="true"></span>
+            </div>
+          </div>
+        </a>
+      </article>
+    </div>
+  </section>
 </main>
 
 
