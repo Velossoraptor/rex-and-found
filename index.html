@@ -45,7 +45,190 @@
        MAIN CONTENT (replace everything inside <main> per page)
        ===================================================== -->
   <main>
+      <!-- Hero -->
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="hero-text">
+          <p class="eyebrow eyebrow-light">Rexburg's community lost &amp; found</p>
+          <h1>Lost something?<br>Rex is on it.</h1>
+          <p class="hero-lead">
+            A friendly place for neighbors and students to reunite with the
+            things that matter. Post it, spot it, bring it home.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-orange" href="post.html">+ Post an item</a>
+            <a class="btn btn-light" href="search.html">Search all posts</a>
+          </div>
+          <p class="hero-stat">
+            <span class="avatars" aria-hidden="true">
+              <i></i><i></i><i></i><i></i>
+            </span>
+            <strong>124 items</strong> reunited in Rexburg
+          </p>
+        </div>
 
+        <div class="hero-art">
+          <div class="speech-bubble">I've got tiny arms,<br>but a big search radius!</div>
+          <div class="mascot" role="img" aria-label="Rex the dinosaur mascot holding a LOST? sign">
+            <img src="/images/rexandfoundlogo.png" alt="Rex the dino with a tophat and a monocle">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Recently lost -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Keep an eye out</p>
+            <h2>Recently lost</h2>
+          </div>
+          <a class="view-all" href="search.html?type=lost">View all lost &rarr;</a>
+        </div>
+
+        <div class="card-grid">
+          <article class="card">
+            <a class="card-link" href="item.html">
+              <div class="card-img img-1"><span class="badge badge-lost">Lost</span></div>
+              <div class="card-body">
+                <p class="card-cat">Bags</p>
+                <h3>Forest green backpack</h3>
+                <p class="card-loc">&#128205; BYU-Idaho Library</p>
+                <div class="card-foot">
+                  <span>&#128339; Today, 10:42 AM</span>
+                  <span class="go" aria-hidden="true">&rsaquo;</span>
+                </div>
+              </div>
+            </a>
+          </article>
+
+          <article class="card">
+            <a class="card-link" href="item.html">
+              <div class="card-img img-2"><span class="badge badge-lost">Lost</span></div>
+              <div class="card-body">
+                <p class="card-cat">Keys</p>
+                <h3>Silver key ring</h3>
+                <p class="card-loc">&#128205; Snowbowl Main Street</p>
+                <div class="card-foot">
+                  <span>&#128339; Yesterday</span>
+                  <span class="go" aria-hidden="true">&rsaquo;</span>
+                </div>
+              </div>
+            </a>
+          </article>
+
+          <article class="card">
+            <a class="card-link" href="item.html">
+              <div class="card-img img-3"><span class="badge badge-lost">Lost</span></div>
+              <div class="card-body">
+                <p class="card-cat">Electronics</p>
+                <h3>AirPods in tan case</h3>
+                <p class="card-loc">&#128205; Hart Building</p>
+                <div class="card-foot">
+                  <span>&#128339; Oct 17</span>
+                  <span class="go" aria-hidden="true">&rsaquo;</span>
+                </div>
+              </div>
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Recently found -->
+    <section class="section section-tint">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Good news travels fast</p>
+            <h2>Recently found</h2>
+          </div>
+          <a class="view-all" href="search.html?type=found">View all found &rarr;</a>
+        </div>
+
+        <div class="card-grid">
+          <article class="card">
+            <a class="card-link" href="item.html">
+              <div class="card-img img-3"><span class="badge badge-found">Found</span></div>
+              <div class="card-body">
+                <p class="card-cat">Electronics</p>
+                <h3>Black smartphone</h3>
+                <p class="card-loc">&#128205; Porter Park</p>
+                <div class="card-foot">
+                  <span>&#128339; Today, 9:15 AM</span>
+                  <span class="go" aria-hidden="true">&rsaquo;</span>
+                </div>
+              </div>
+            </a>
+          </article>
+
+          <article class="card">
+            <a class="card-link" href="item.html">
+              <div class="card-img img-4"><span class="badge badge-found">Found</span></div>
+              <div class="card-body">
+                <p class="card-cat">Bags</p>
+                <h3>Blue hiking bag</h3>
+                <p class="card-loc">&#128205; Smith Park</p>
+                <div class="card-foot">
+                  <span>&#128339; Yesterday</span>
+                  <span class="go" aria-hidden="true">&rsaquo;</span>
+                </div>
+              </div>
+            </a>
+          </article>
+
+          <article class="card">
+            <a class="card-link" href="item.html">
+              <div class="card-img img-2"><span class="badge badge-picked">&#10003; Picked up</span></div>
+              <div class="card-body">
+                <p class="card-cat">Clothing</p>
+                <h3>Cream knit scarf</h3>
+                <p class="card-loc">&#128205; Rexburg Tabernacle</p>
+                <div class="card-foot">
+                  <span>&#128339; Oct 17</span>
+                  <span class="go" aria-hidden="true">&rsaquo;</span>
+                </div>
+              </div>
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- How it works -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head section-head-stack">
+          <p class="eyebrow">Simple as one, two, three</p>
+          <h2>How Rex &amp; Found works</h2>
+        </div>
+
+        <ol class="steps">
+          <li>
+            <span class="step-num">01</span>
+            <div>
+              <h3>Post the details</h3>
+              <p>Tell the community what went missing or what you found.</p>
+            </div>
+          </li>
+          <li>
+            <span class="step-num">02</span>
+            <div>
+              <h3>Make a match</h3>
+              <p>Search posts, leave a comment, or link two matching reports.</p>
+            </div>
+          </li>
+          <li>
+            <span class="step-num">03</span>
+            <div>
+              <h3>Reunite &amp; resolve</h3>
+              <p>Arrange a safe pickup and mark the item as reunited.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
   </main>
 
   <!-- =====================================================
