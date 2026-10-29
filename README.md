@@ -2,6 +2,9 @@
 - Talia Olsen :)
 - Sam Whittle
 - Ryan Jimenez
+- Liam Rogers
+- Ian Crabtree
+- DJ
 
 # How to Pull Request! 
 1. Complete all of the code you need on your branch (eg. ```your-branch```)
