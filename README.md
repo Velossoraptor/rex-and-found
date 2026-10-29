@@ -4,7 +4,7 @@
 - Ryan Jimenez
 - Liam Rogers
 - Ian Crabtree
-- DJ
+- DJ Knudsen
 
 # How to Pull Request! 
 1. Complete all of the code you need on your branch (eg. ```your-branch```)
