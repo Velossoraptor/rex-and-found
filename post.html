@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rex &amp; Found | Rexburg's Community Lost &amp; Found</title>
+  <meta name="description" content="A friendly place for neighbors and students to reunite with the things that matter.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- =====================================================
+       HEADER (shared on every page)
+       Move the class="active" to the link of the current page.
+       ===================================================== -->
+
+         <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-mark" aria-hidden="true">R</span>
+        <span class="brand-name">Rex <span class="amp">&amp;</span> Found</span>
+      </a>
+
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="search.html">Search posts</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="post.html" class="active">Make a Post</a>
+      </nav>
+
+      <div class="header-actions">
+        <a class="login-link" href="login.html">
+          <span aria-hidden="true">&#9786;</span> Log in
+        </a>
+        <a class="btn btn-dark btn-sm" href="post.html">+ Post an item</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- =====================================================
+       MAIN CONTENT (replace everything inside <main> per page)
+       ===================================================== -->
+
+  <main>
+    <!--left side of screen-->
+    <h1 id = "post_title">Post a Lost Item</h1>
+    <div id = "page_split">
+      <div id = "dinosaur">
+          <h1 id = "temp_line">Put a Picture Here</h1>
+      </div>
+       
+      <!--Right side of screen-->
+    <form onsubmit="window.location.href='index.html'; return false;">
+      <!--form title-->
+      <h2 id = "form_title">What happened?</h2>
+
+      <!--Grid for two buttons-->
+        <div id = "button_grid">
+
+          <!--Lost button-->
+          <div id = "lost">
+            <label>
+            <input type = "radio" id = "lost_button" name = "item_status" value = "lost" required>
+            <span class="line1">I lost something</span>
+            <br>
+            <span class="line2">Help me find an item</span>
+            </label>
+          </div>
+
+          <!--Found button-->
+          <div id = "found">
+            <label>
+            <input type = "radio" id = "found_button" name = "item_status" value = "found">
+            <span class="line1">I found something</span><br>
+            <span class="line2">Help me find the owner</span>
+            </label>
+          </div>
+        </div> 
+
+        <!--line-->
+        <hr>
+
+        <!--Grid for form until line break-->
+        <div id = "grid_form">
+
+          <!--Item Title-->
+          <label for = "title" class = "labels">Item Title </label>
+            <input type = "text" id = "title" name = "item_name" placeholder= "e.g green backpack">
+          
+          <!--Item category-->
+          <label for = "category" class = "labels">Category </label>
+            <select name="category" id ="category" required>
+              <option value = "bags">bags </option>
+              <option value = "keys">keys </option>
+              <option  value = "electronics">electronics </option>
+              <option value = "jewelry">jewelry </option>
+              <option value = "clothing">clothing </option>
+              <option value = "other">other</option>
+            </select>
+
+          <!--Location-->
+          <label for = "location" class = "labels">Location</label>
+            <textarea id = "location" name = "location" placeholder = "Where was it last seen/where did you find it" required></textarea>
+              
+          <!--Full Description-->
+          <label for = "full_description" class = "labels">Full Description</label>
+            <textarea id = "full_description" required name = "full_description" placeholder="Include colors, materials, and other identifing characteristics"></textarea>
+        
+          <!--Photo-->
+          <label for = "photo" class = "labels">Photo of object</label>
+            <div class="file-upload">
+              <input type="file" id = "photo" name = "photo" accept="image/png, image/gif, image/jpeg">
+              <label for="photo" id="file-button">Choose a photo</label>
+            </div>
+          </div>
+
+        <!--line break-->
+        <hr>
+
+        <!--Grid for form until line break-->
+        <div id = "grid_form2">
+
+          <!--Name/author-->
+          <label for = "author" class = labels>Name</label>
+            <input type = "text" id = "author" required placeholder = "First name only">
+
+          <!--Contact-->
+          <label for = "contact" class = "labels">Contact Info</label>
+            <textarea required id = "contact" name = "contact" placeholder="Phone number, email, etc"></textarea>
+        </div>
+         
+        <!--line break-->
+        <hr>
+        
+        <!--Grid for the rest of the form-->
+        <div id = "grid_form3">
+          
+          <!--saftey agreement-->
+          <h5 id = "safety_agreement">By posting, you agree to arrange exchanges in a safe public place</h5>
+
+          <!--submit button-->
+          <input type="submit" id = "submit_button"value="Publish Post">
+
+        </div>
+      </form>
+    </div>
+
+    </main>
+<!-- =====================================================
+       FOOTER (shared on every page)
+       ===================================================== -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a class="brand brand-light" href="index.html">
+            <span class="brand-mark" aria-hidden="true">R</span>
+            <span class="brand-name">Rex <span class="amp">&amp;</span> Found</span>
+          </a>
+          <p>Helping Rexburg find its way home, one item at a time.</p>
+        </div>
+
+        <div class="footer-cols">
+          <div>
+            <h4>Explore</h4>
+            <a href="search.html">Browse posts</a>
+            <a href="post.html">Post an item</a>
+          </div>
+          <div>
+            <h4>About</h4>
+            <a href="about.html">Our story</a>
+            <a href="contact.html">Contact</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>&copy; 2026 Rex &amp; Found. Rexburg, Idaho.</span>
+        <span>Stay safe when meeting up. Help locally.</span>
+      </div>
+    </div>
+  </footer>
+<script>
+  const photoInput = document.getElementById("photo");
+  const fileButton = document.getElementById("file-button");
+
+  photoInput.addEventListener("change", function () {
+    if (this.files.length > 0) {
+      fileButton.textContent = this.files[0].name;
+    } else {
+      fileButton.textContent = "Choose a photo";
+    }
+  });
+</script>
+</body>
+</html>
