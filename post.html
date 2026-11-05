@@ -55,7 +55,7 @@
       </div>
        
       <!--Right side of screen-->
-    <form onsubmit="window.location.href='index.html'; return false;">
+    <form id="create-post-form">
       <!--form title-->
       <h2 id = "form_title">What happened?</h2>
 
@@ -90,7 +90,7 @@
 
           <!--Item Title-->
           <label for = "title" class = "labels">Item Title </label>
-            <input type = "text" id = "title" name = "item_name" placeholder= "e.g green backpack">
+            <input type = "text" id = "title" name = "item_name" placeholder= "e.g green backpack" required>
           
           <!--Item category-->
           <label for = "category" class = "labels">Category </label>
@@ -114,7 +114,7 @@
           <!--Photo-->
           <label for = "photo" class = "labels">Photo of object</label>
             <div class="file-upload">
-              <input type="file" id = "photo" name = "photo" accept="image/png, image/gif, image/jpeg">
+              <input type="file" id = "photo" name = "photo" accept="image/png, image/gif, image/jpeg" multiple>
               <label for="photo" id="file-button">Choose a photo</label>
             </div>
           </div>
@@ -142,7 +142,7 @@
           
           <!--saftey agreement-->
           <h5 id = "safety_agreement">By posting, you agree to arrange exchanges in a safe public place</h5>
-
+          <p id="submit-message" role="status" aria-live="polite"></p>
           <!--submit button-->
           <input type="submit" id = "submit_button"value="Publish Post">
 
@@ -186,16 +186,30 @@
     </div>
   </footer>
 <script>
-  const photoInput = document.getElementById("photo");
-  const fileButton = document.getElementById("file-button");
+    const photoInput = document.getElementById("photo");
+    const fileButton = document.getElementById("file-button");
 
-  photoInput.addEventListener("change", function () {
-    if (this.files.length > 0) {
-      fileButton.textContent = this.files[0].name;
-    } else {
-      fileButton.textContent = "Choose a photo";
-    }
-  });
+    photoInput.addEventListener("change", () => {
+        const files = photoInput.files;
+
+        if (files.length > 5) {
+            alert("You can upload a maximum of 5 photos.");
+            photoInput.value = "";
+            fileButton.textContent = "Choose photos (up to 5)";
+            return;
+        }
+
+        if (files.length === 0) {
+            fileButton.textContent = "Choose photos (up to 5)";
+        } else if (files.length === 1) {
+            fileButton.textContent = files[0].name;
+        } else {
+            fileButton.textContent = `${files.length} photos selected`;
+        }
+    });
 </script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase-config.js"></script>
+<script src="js/submit-post.js"></script>
 </body>
 </html>

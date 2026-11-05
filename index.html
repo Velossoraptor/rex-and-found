@@ -70,7 +70,7 @@
         <div class="hero-art">
           <div class="speech-bubble">I've got tiny arms,<br>but a big search radius!</div>
           <div class="mascot" role="img" aria-label="Rex the dinosaur mascot holding a LOST? sign">
-            <img src="/images/rexandfoundlogo.png" alt="Rex the dino with a tophat and a monocle">
+            <img src="https://vzzmpufeaceywcxcmwqu.supabase.co/storage/v1/object/public/post-images/rexandfoundlogo.png" alt="Rex the dino with a tophat and a monocle">
           </div>
         </div>
       </div>
@@ -87,8 +87,8 @@
           <a class="view-all" href="search.html?type=lost">View all lost &rarr;</a>
         </div>
 
-        <div class="card-grid">
-          <article class="card">
+        <div class="card-grid" id="recent-lost">
+          <!-- <article class="card">
             <a class="card-link" href="item.html">
               <div class="card-img img-1"><span class="badge badge-lost">Lost</span></div>
               <div class="card-body">
@@ -131,7 +131,8 @@
                 </div>
               </div>
             </a>
-          </article>
+          </article> -->
+          <p>Loading Lost Items...</p>
         </div>
       </div>
     </section>
@@ -147,8 +148,8 @@
           <a class="view-all" href="search.html?type=found">View all found &rarr;</a>
         </div>
 
-        <div class="card-grid">
-          <article class="card">
+        <div class="card-grid" id="recent-found">
+          <!-- <article class="card">
             <a class="card-link" href="item.html">
               <div class="card-img img-3"><span class="badge badge-found">Found</span></div>
               <div class="card-body">
@@ -191,7 +192,8 @@
                 </div>
               </div>
             </a>
-          </article>
+          </article> -->
+          <p>Loading Found Items...</p>
         </div>
       </div>
     </section>
@@ -266,5 +268,8 @@
     </div>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-config.js"></script>
+  <script src="js/index.js"></script>
 </body>
 </html>

@@ -70,11 +70,11 @@
         <option>Clothing</option>
         <option>Other</option>
       </select>
-      <p class="results-count">6 posts</p>
+      <p class="results-count" id="results-count">Loading...</p>
     </div>
 
-    <div class="post-grid">
-      <article class="post-card">
+    <div class="post-grid" id="search-results">
+      <!-- <article class="post-card">
         <a href="#">
           <div class="post-img img-1">
             <span class="badge badge-lost">Lost</span>
@@ -174,7 +174,8 @@
             </div>
           </div>
         </a>
-      </article>
+      </article> -->
+      <p>Loading Posts...</p>
     </div>
   </section>
 </main>
@@ -214,6 +215,8 @@
       </div>
     </div>
   </footer>
-
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase-config.js"></script>
+<script src="js/search.js"></script>
 </body>
 </html>

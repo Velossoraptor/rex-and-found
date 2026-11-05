@@ -51,7 +51,7 @@ async function loadPost() {
   const statusLabels = {
     lost: "Lost",
     found: "Found",
-    "picked-up": "Picked Up"
+    "picked up": "Picked Up"
   };
 
   statusElement.textContent =
@@ -76,62 +76,88 @@ async function loadPost() {
     });
 
 
+
   // Generate image carousel
-  const images = post.images ?? [];
+  const images = Array.isArray(post.images)
+    ? post.images.filter(path => typeof path === "string" && path.trim())
+    : [];
+
   const imageContainer = document.getElementById("post-images");
   const prevButton = document.getElementById("prev-image");
   const nextButton = document.getElementById("next-image");
 
+  // Replace with your actual public bucket name
+  const bucketName = "post-images";
+
   let currentImageIndex = 0;
 
-  function displayImage() {
-    // Clear the previous image
-    imageContainer.innerHTML = "";
+  // Convert a stored file path into a public image URL
+  function getImageUrl(path) {
+    // Also supports full URLs if you have older posts
+    // that stored image URLs instead of paths
+    if (/^https?:\/\//i.test(path)) {
+      return path;
+    }
 
-    // Create the current image
+    const { data } = supabaseClient.storage
+      .from(bucketName)
+      .getPublicUrl(path);
+
+    return data.publicUrl;
+  }
+
+  // Display the currently selected image
+  function displayImage() {
+    imageContainer.replaceChildren();
+
     const img = document.createElement("img");
-    img.src = images[currentImageIndex];
-    img.alt = post.title;
+
+    img.src = getImageUrl(images[currentImageIndex]);
+    img.alt = `${post.title} - Image ${currentImageIndex + 1}`;
+
+    img.onerror = () => {
+      img.remove();
+
+      const errorMessage = document.createElement("p");
+      errorMessage.textContent = "Unable to load image.";
+
+      imageContainer.appendChild(errorMessage);
+    };
 
     imageContainer.appendChild(img);
   }
 
   // Go to previous image
   prevButton.addEventListener("click", () => {
-    currentImageIndex--;
+    if (images.length <= 1) return;
 
-    if (currentImageIndex < 0) {
-      currentImageIndex = images.length - 1;
-    }
+    currentImageIndex =
+      (currentImageIndex - 1 + images.length) % images.length;
 
     displayImage();
   });
 
   // Go to next image
   nextButton.addEventListener("click", () => {
-    currentImageIndex++;
+    if (images.length <= 1) return;
 
-    if (currentImageIndex >= images.length) {
-      currentImageIndex = 0;
-    }
+    currentImageIndex =
+      (currentImageIndex + 1) % images.length;
 
     displayImage();
   });
 
-  // Display the first image when the page loads
+  // Display the first image or a placeholder
   if (images.length > 0) {
     displayImage();
   } else {
-    prevButton.hidden = true;
-    nextButton.hidden = true;
     imageContainer.textContent = "No images available";
   }
 
-  // Hide arrows when there's only one image
-  if (images.length <= 1) {
-    prevButton.hidden = true;
-    nextButton.hidden = true;
-  }
+  // Only show navigation buttons for multiple images
+  prevButton.hidden = images.length <= 1;
+  nextButton.hidden = images.length <= 1;
+
 
   // Load comments for this post
   await loadComments(post.id);
