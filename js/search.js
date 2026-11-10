@@ -5,7 +5,7 @@ async function loadSearchPosts() {
 
     const { data: posts, error } = await supabaseClient
         .from("posts")
-        .select("id, title, status, location, time_posted, images")
+        .select("id, title, status, location, time_posted, images, category")
         .order("time_posted", { ascending: false });
 
     if (error) {
@@ -36,7 +36,7 @@ async function loadSearchPosts() {
 // Generate a card using the existing CSS
 function createSearchCard(post) {
     const article = document.createElement("article");
-    article.className = "post-card";
+    article.className = `post-card ${post.status} ${post.category}`;
 
     const link = document.createElement("a");
     link.href = `item-page.html?id=${encodeURIComponent(post.id)}`;
