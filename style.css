@@ -874,6 +874,8 @@ button, input, select { font: inherit; }
 
 #post_title, #form_title, #safety_agreement, #temp_line{text-align: center;}
 
+#post_title {margin-top: 15px;}
+
 #form_title
    {margin-top: 5px;}
 
@@ -1126,3 +1128,52 @@ input[type = "file"]::file-selector-button
 #submit_button:hover
    {background: #173f31;
     color:white;}
+
+/*about us page*/
+
+#about_title
+    {text-align: center;
+    color:#e87f3c;
+    padding: 15px;
+    padding-top:0px;
+    font-size: 60px;
+    padding-bottom: 0px;
+    }
+
+.text{font-family:"Fraunces", Georgia, "Times New Roman", serif;
+  margin: 10px;
+  text-align: center;}
+
+#top_green{background-color: #173f31;
+  padding-top: 10px;}
+
+#start_text{
+  color:white;
+  justify-self: center;
+  align-self: center;}
+
+#dino-img{justify-self: center;
+  padding: 30px;
+  padding-top: 0px;}
+
+.about_subtitle{text-align: center;
+  font-family:"Fraunces", Georgia, "Times New Roman", serif;
+  margin: 15px;}
+
+.images{justify-self: center;
+  border: 2px solid #1f2a38;
+  border-radius: 100%;}
+
+.text_sum{font-family:"Fraunces", Georgia, "Times New Roman", serif;
+  margin: 10px;
+  width: 90%;
+  text-align: center;
+  justify-self: center;}
+
+#small-grid{display: grid;
+  grid-template-columns: 1fr 1fr;
+  }
+
+.linebreak{border-color: #e87f3c;
+  background-color: #e87f3c;}
+
