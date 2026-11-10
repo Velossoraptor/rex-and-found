@@ -874,6 +874,8 @@ button, input, select { font: inherit; }
 
 #post_title, #form_title, #safety_agreement, #temp_line{text-align: center;}
 
+#post_title {margin-top: 15px;}
+
 #form_title
    {margin-top: 5px;}
 
