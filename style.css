@@ -1129,6 +1129,18 @@ input[type = "file"]::file-selector-button
    {background: #173f31;
     color:white;}
 
+    /*nothing found on search bar*/
+
+#noResults {
+  text-align: center;
+  font-weight: 700;
+  font-size: 1.1rem;
+  padding: 3rem 1rem;
+  grid-column: 1 / -1;
+}    
+
+
+.post-card[hidden] { display: none; }
 /*about us page*/
 
 #about_title
