@@ -92,7 +92,8 @@ categorySelect.addEventListener("change", () => {
 });
 
 // On page load, read ?filter=lost or ?filter=found from the URL
-const startFilter = new URLSearchParams(window.location.search).get("filter");
+const params = new URLSearchParams(window.location.search);
+const startFilter = params.get("filter") || params.get("type");
 if (["lost", "found"].includes(startFilter)) {
   currentStatus = startFilter;
 }
