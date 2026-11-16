@@ -40,6 +40,7 @@ function createSearchCard(post) {
     const article = document.createElement("article");
     article.className = `post-card ${post.status} ${post.category}`;
     article.dataset.status = (post.status || "").toLowerCase();
+    article.dataset.category = (post.category || "").trim().toLowerCase();
     article.dataset.search = [post.title, post.location, post.category, post.status, post.description]
     .filter(Boolean)
     .join(" ")
