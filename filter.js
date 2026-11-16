@@ -44,13 +44,14 @@ function applyFilters() {
   const cards = document.querySelectorAll(".post-card");
   let visible = 0;
 
+  const words = currentQuery.split(/\s+/).filter(Boolean);
   cards.forEach(card => {
     const statusMatch =
       currentStatus === "all" || card.dataset.status === currentStatus;
     const categoryMatch =
       currentCategory === "all" || card.dataset.category === currentCategory;
-    const searchMatch =
-      currentQuery === "" || card.textContent.toLowerCase().includes(currentQuery);
+    const haystack = card.dataset.search || "";
+    const searchMatch = words.every(word => haystack.includes(word));
 
     const show = statusMatch && categoryMatch && searchMatch;
     card.hidden = !show;
