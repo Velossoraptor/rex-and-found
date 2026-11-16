@@ -31,12 +31,15 @@ async function loadSearchPosts() {
     posts.forEach(post => {
         container.appendChild(createSearchCard(post));
     });
+
+    window.applyFilters?.();
 }
 
 // Generate a card using the existing CSS
 function createSearchCard(post) {
     const article = document.createElement("article");
     article.className = `post-card ${post.status} ${post.category}`;
+    article.dataset.status = (post.status || "").toLowerCase();
 
     const link = document.createElement("a");
     link.href = `item-page.html?id=${encodeURIComponent(post.id)}`;
