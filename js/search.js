@@ -5,7 +5,7 @@ async function loadSearchPosts() {
 
     const { data: posts, error } = await supabaseClient
         .from("posts")
-        .select("id, title, status, location, time_posted, images, category")
+        .select("id, title, status, location, time_posted, images, category, description")
         .order("time_posted", { ascending: false });
 
     if (error) {
@@ -40,6 +40,10 @@ function createSearchCard(post) {
     const article = document.createElement("article");
     article.className = `post-card ${post.status} ${post.category}`;
     article.dataset.status = (post.status || "").toLowerCase();
+    article.dataset.search = [post.title, post.location, post.category, post.status, post.description]
+    .filter(Boolean)
+    .join(" ")
+    .toLowerCase();
 
     const link = document.createElement("a");
     link.href = `item-page.html?id=${encodeURIComponent(post.id)}`;
