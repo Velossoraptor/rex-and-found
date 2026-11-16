@@ -56,129 +56,27 @@
   </section>
 
   <section class="results container">
-    <div class="filter-tabs" role="group" aria-label="Filter by status">
-  <button type="button" data-filter="all" aria-pressed="true">All</button>
-  <button type="button" data-filter="lost" aria-pressed="false">Lost</button>
-  <button type="button" data-filter="found" aria-pressed="false">Found</button>
-</div>
+    <div class="results-bar">
+      <div class="filter-tabs" role="group" aria-label="Filter by status">
+        <button type="button" data-filter="all" aria-pressed="true">All</button>
+        <button type="button" data-filter="lost" aria-pressed="false">Lost</button>
+        <button type="button" data-filter="found" aria-pressed="false">Found</button>
+      </div>
+      <select class="filter-select" id="categoryFilter" aria-label="Filter by category">
+        <option>All categories</option>
+        <option>Bags</option>
+        <option>Electronics</option>
+        <option>Keys</option>
+        <option>Clothing</option>
+        <option>Other</option>
+      </select>
+      <p class="results-count" id="results-count">Loading...</p>
+    </div>
 
-<select class="filter-select" id="categoryFilter" aria-label="Filter by category">
-  <option value="all">All categories</option>
-  <option value="bags">Bags</option>
-  <option value="electronics">Electronics</option>
-  <option value="keys">Keys</option>
-  <option value="clothing">Clothing</option>
-  <option value="other">Other</option>
-</select>
-
-<p class="results-count" id="resultsCount">6 posts</p>
-    
-
-    <div class="post-grid">
-      <article class="post-card" data-status="lost" data-category="bags" data-posted="2026-11-05T11:42">
-        <a href="#">
-          <div class="post-img img-1">
-            <span class="badge badge-lost">Lost</span>
-          </div>
-          <div class="post-body">
-            <p class="post-cat">Bags</p>
-            <h3>Forest green backpack</h3>
-            <p class="post-meta post-loc">BYU&ndash;Idaho Library</p>
-            <div class="post-foot">
-              <span class="post-meta post-time">Today, 11:42 AM</span>
-              <span class="post-go" aria-hidden="true"></span>
-            </div>
-          </div>
-        </a>
-      </article>
-
-      <article class="post-card" data-status="found" data-category="electronics" data-posted="2026-11-05T09:15">
-        <a href="#">
-          <div class="post-img img-3">
-            <span class="badge badge-found">Found</span>
-          </div>
-          <div class="post-body">
-            <p class="post-cat">Electronics</p>
-            <h3>Black smartphone</h3>
-            <p class="post-meta post-loc">Porter Park</p>
-            <div class="post-foot">
-              <span class="post-meta post-time">Today, 9:15 AM</span>
-              <span class="post-go" aria-hidden="true"></span>
-            </div>
-          </div>
-        </a>
-      </article>
-
-      <article class="post-card" data-status="lost" data-category="keys" data-posted="2026-11-04T16:30">
-        <a href="#">
-          <div class="post-img img-2">
-            <span class="badge badge-lost">Lost</span>
-          </div>
-          <div class="post-body">
-            <p class="post-cat">Keys</p>
-            <h3>Silver key ring</h3>
-            <p class="post-meta post-loc">Downtown Main Street</p>
-            <div class="post-foot">
-              <span class="post-meta post-time">Yesterday</span>
-              <span class="post-go" aria-hidden="true"></span>
-            </div>
-          </div>
-        </a>
-      </article>
-
-      <article class="post-card" data-status="found" data-category="bags" data-posted="2026-11-04T10:05">
-        <a href="#">
-          <div class="post-img img-4">
-            <span class="badge badge-found">Found</span>
-          </div>
-          <div class="post-body">
-            <p class="post-cat">Bags</p>
-            <h3>Blue hiking bag</h3>
-            <p class="post-meta post-loc">Smith Park</p>
-            <div class="post-foot">
-              <span class="post-meta post-time">Yesterday</span>
-              <span class="post-go" aria-hidden="true"></span>
-            </div>
-          </div>
-        </a>
-      </article>
-
-      <article class="post-card" data-status="lost" data-category="electronics" data-posted="2026-10-29T14:20">
-        <a href="#">
-          <div class="post-img img-3">
-            <span class="badge badge-lost">Lost</span>
-          </div>
-          <div class="post-body">
-            <p class="post-cat">Electronics</p>
-            <h3>AirPods in tan case</h3>
-            <p class="post-meta post-loc">Hart Building</p>
-            <div class="post-foot">
-              <span class="post-meta post-time">Feb 12</span>
-              <span class="post-go" aria-hidden="true"></span>
-            </div>
-          </div>
-        </a>
-      </article>
-
-      <article class="post-card" data-status="found" data-category="clothing" data-posted="2026-10-28T08:45">
-        <a href="#">
-          <div class="post-img img-2">
-            <span class="badge badge-picked">&#10003; Picked up</span>
-          </div>
-          <div class="post-body">
-            <p class="post-cat">Clothing</p>
-            <h3>Cream knit scarf</h3>
-            <p class="post-meta post-loc">Rexburg Tabernacle</p>
-            <div class="post-foot">
-              <span class="post-meta post-time">Feb 11</span>
-              <span class="post-go" aria-hidden="true"></span>
-            </div>
-          </div>
-        </a>
-      </article>
+    <div class="post-grid" id="search-results">
+      <p>Loading Posts...</p>
     </div>
   </section>
-  <p id="noResults" hidden>No posts match those filters.</p>
 </main>
 
 
@@ -216,6 +114,9 @@
       </div>
     </div>
   </footer>
-  <script src="filter.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase-config.js"></script>
+<script src="js/search.js"></script>
+<script src="filter.js"></script>
 </body>
 </html>

@@ -1,7 +1,6 @@
 const tabs = document.querySelectorAll(".filter-tabs button");
 const categorySelect = document.getElementById("categoryFilter");
-const cards = document.querySelectorAll(".post-card");
-const countEl = document.getElementById("resultsCount");
+const countEl = document.getElementById("results-count");
 const noResults = document.getElementById("noResults");
 const searchForm = document.querySelector(".search-bar");
 const searchInput = document.getElementById("searchInput");
@@ -39,15 +38,10 @@ function formatPostDate(dateString) {
   return posted.toLocaleDateString("en-US", options);
 }
 
-// Update every card's date label
-cards.forEach(card => {
-  const timeEl = card.querySelector(".post-time");
-  if (timeEl && card.dataset.posted) {
-    timeEl.textContent = formatPostDate(card.dataset.posted);
-  }
-});
+
 
 function applyFilters() {
+  const cards = document.querySelectorAll(".post-card");
   let visible = 0;
 
   cards.forEach(card => {
@@ -126,4 +120,4 @@ if (startQuery) {
 
 
 
-applyFilters();
+window.applyFilters = applyFilters;
