@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Log In | Rex & Found</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="site-header">
+        <div class="header-inner">
+            <a class="brand" href="index.html">
+                <span class="brand-mark" aria-hidden="true">R</span>
+                <span class="brand-name">
+                    Rex <span class="amp">&amp;</span> Found
+                </span>
+            </a>
+
+            <nav class="main-nav" aria-label="Main navigation">
+                <a href="index.html">Home</a>
+                <a href="search.html">Search posts</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+                <a href="post.html">Make a Post</a>
+            </nav>
+
+            <div class="header-actions">
+                <a class="login-link" href="login.html">
+    <span aria-hidden="true">&#9786;</span> Log in
+</a>
+                <a class="btn btn-dark btn-sm" href="post.html">
+                    + Post an item
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="login-main">
+        <section class="login-card">
+
+            <div class="login-mascot">
+                <img src="https://vzzmpufeaceywcxcmwqu.supabase.co/storage/v1/object/public/post-images/rexandfoundlogo.png"
+                    alt="Rex the dinosaur">
+            </div>
+
+            <p class="eyebrow">Welcome to the neighborhood</p>
+
+            <h1>Join the search!</h1>
+
+            <p class="login-description">
+                Sign in to post lost items, help your neighbors,
+                and bring missing things home.
+            </p>
+
+            <button id="google-login" class="btn btn-dark google-login">
+                Continue with Google
+            </button>
+
+            <p id="login-error" class="login-error" role="alert"></p>
+
+            <p class="login-note">
+                New here? Your account will be created automatically
+                when you sign in.
+            </p>
+
+        </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase-config.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/login.js"></script>
+
+</body>
+
+</html>

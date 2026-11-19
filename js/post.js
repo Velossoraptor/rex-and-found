@@ -35,14 +35,76 @@ async function loadPost() {
   document.getElementById("post-title").textContent =
     post.title;
 
+
+  // ==========================================
+  // DISPLAY THE AUTHOR'S CURRENT PROFILE NAME
+  // ==========================================
+
+  // Fall back to the original author for older posts.
+  let authorName = post.author || "Unknown";
+
+  if (post.user_id) {
+    const { data: profile, error: profileError } =
+      await supabaseClient
+        .from("profiles")
+        .select("display_name")
+        .eq("id", post.user_id)
+        .maybeSingle();
+
+    if (profileError) {
+      console.error("Error loading author profile:", profileError);
+    } else if (profile?.display_name) {
+      authorName = profile.display_name;
+    }
+  }
+
   document.getElementById("post-author").textContent =
-    "Posted by: " + post.author;
+    "Posted by: " + authorName;
+
 
   document.getElementById("post-description").textContent =
     "Description: " + post.description;
 
-  document.getElementById("author-contact").textContent =
-    "Contact Information: " + post.contact;
+
+  // ==========================================
+  // DISPLAY PUBLIC CONTACT INFORMATION
+  // ==========================================
+
+  const contactElement =
+    document.getElementById("author-contact");
+
+  const contactDetails = [];
+
+  // Optional phone number.
+  if (post.phone_number) {
+    contactDetails.push(`Phone: ${post.phone_number}`);
+  }
+
+  // Only retrieve the email when the author opted in.
+  if (post.show_email === true && post.user_id) {
+    const { data: email, error: emailError } =
+      await supabaseClient.rpc(
+        "get_post_contact_email",
+        { requested_post_id: post.id }
+      );
+
+    if (emailError) {
+      console.error("Error loading public email:", emailError);
+    } else if (email) {
+      contactDetails.push(`Email: ${email}`);
+    }
+  }
+
+  // Older posts may still use the original contact field.
+  // Only display it for posts without an account owner.
+  if (!post.user_id && post.contact) {
+    contactDetails.push(post.contact);
+  }
+
+  contactElement.textContent = contactDetails.length > 0
+    ? contactDetails.join(" | ")
+    : "No public contact information provided.";
+
 
 
   // Display post status
@@ -51,7 +113,7 @@ async function loadPost() {
   const statusLabels = {
     lost: "Lost",
     found: "Found",
-    "picked up": "Picked Up"
+    "picked-up": "Picked Up"
   };
 
   statusElement.textContent =
@@ -166,46 +228,116 @@ async function loadPost() {
 
 // Get and display comments from supabase
 
+
 async function loadComments(postId) {
-  const { data: comments, error } = await supabaseClient
-    .from("comments")
-    .select("*")
-    .eq("post_id", postId)
-    .order("time_posted", { ascending: true });
 
-  if (error) {
-    console.error("Error loading comments:", error);
-    return;
-  }
+    const { data: comments, error } = await supabaseClient
+        .from("comments")
+        .select("*")
+        .eq("post_id", postId)
+        .order("time_posted", { ascending: true });
 
-  const container = document.getElementById("post-comments");
-  container.replaceChildren();
+    if (error) {
+        console.error("Error loading comments:", error);
+        return;
+    }
 
-  comments.forEach(comment => {
-    const commentElement = document.createElement("p");
+    const container = document.getElementById("post-comments");
+    container.replaceChildren();
 
-    commentElement.textContent =
-      comment.author + ": " + comment.text;
+    for (const comment of comments) {
 
-    const dateElement = document.createElement("small");
+        let displayName = comment.author;
+        const isMember = comment.user_id !== null;
 
-    dateElement.textContent =
-      "\n" + new Date(comment.time_posted).toLocaleDateString(
-        "en-US",
-        {
-          month: "short",
-          day: "numeric",
-          year: "numeric"
+        // Retrieve current display name for members.
+        if (isMember) {
+            const { data: profile } = await supabaseClient
+                .from("profiles")
+                .select("display_name")
+                .eq("id", comment.user_id)
+                .maybeSingle();
+
+            if (profile?.display_name) {
+                displayName = profile.display_name;
+            }
         }
-      );
 
-    commentElement.appendChild(dateElement);
-    container.appendChild(commentElement);
-  });
+        // Comment wrapper.
+        const commentElement = document.createElement("div");
+        commentElement.className = "comment-item";
+
+        // Author.
+        const authorElement = document.createElement("strong");
+        authorElement.textContent = displayName || "Anonymous";
+
+        // Member or Guest badge.
+        const badge = document.createElement("span");
+        badge.className = isMember
+            ? "comment-badge comment-member"
+            : "comment-badge comment-guest";
+
+        badge.textContent = isMember ? "Member" : "Guest";
+
+        // Comment text.
+        const textElement = document.createElement("p");
+        textElement.textContent = comment.text;
+
+        // Date.
+        const dateElement = document.createElement("small");
+        dateElement.textContent = new Date(
+            comment.time_posted
+        ).toLocaleDateString("en-US", {
+            month: "short",
+            day: "numeric",
+            year: "numeric"
+        });
+
+        commentElement.append(
+            authorElement,
+            badge,
+            textElement,
+            dateElement
+        );
+
+        container.appendChild(commentElement);
+    }
 }
 
 
+
 // Comment form listeners
+
+// ==========================================
+// COMMENT AUTHENTICATION
+// ==========================================
+
+// Stores the signed-in user, if one exists.
+let commentUser = null;
+
+// Configure the comment form for guests or members.
+async function initializeCommentForm() {
+  commentUser = await getCurrentUser();
+
+  const authorField =
+    document.getElementById("comment-author-field");
+
+  const authorInput =
+    document.getElementById("comment-author");
+
+  if (commentUser) {
+    // Members use their profile display name.
+    authorField.hidden = true;
+    authorInput.required = false;
+  } else {
+    // Guests must enter a name.
+    authorField.hidden = false;
+    authorInput.required = true;
+  }
+}
+
+// Initialize when the page loads.
+initializeCommentForm();
 
 // Get the button and form
 const writeCommentButton = document.getElementById("write-comment");
@@ -220,7 +352,11 @@ writeCommentButton.addEventListener("click", () => {
     writeCommentButton.textContent = "💬 Write a Comment";
   } else {
     writeCommentButton.textContent = "Cancel";
-    document.getElementById("comment-author").focus();
+    if (commentUser) {
+      document.getElementById("comment-text").focus();
+    } else {
+      document.getElementById("comment-author").focus();
+    }
   }
 });
 
@@ -240,53 +376,83 @@ writeCommentButton.addEventListener("click", () => {
 
 // Handle comment submission
 
+
 commentForm.addEventListener("submit", async (event) => {
-  event.preventDefault();
+    event.preventDefault();
 
-  const author = document
-    .getElementById("comment-author").value.trim();
+    const text = document
+        .getElementById("comment-text").value.trim();
 
-  const text = document
-    .getElementById("comment-text").value.trim();
+    const user = await getCurrentUser();
 
-  if (!author || !text) {
-    alert("Please fill out all fields.");
-    return;
-  }
+    let author;
+    let userId = null;
 
-  const submitButton = commentForm.querySelector(
-    'button[type="submit"]'
-  );
+    if (user) {
+        // Signed-in users use their current profile name.
+        const { data: profile, error: profileError } =
+            await supabaseClient
+                .from("profiles")
+                .select("display_name")
+                .eq("id", user.id)
+                .single();
 
-  submitButton.disabled = true;
+        if (profileError) {
+            console.error("Unable to load profile:", profileError);
+            alert("Unable to load your profile. Please try again.");
+            return;
+        }
 
-  // Insert the new comment into Supabase
-  const { error } = await supabaseClient
-    .from("comments")
-    .insert({
-      post_id: postId,
-      author: author,
-      text: text
-    });
+        author = profile.display_name;
+        userId = user.id;
 
-  submitButton.disabled = false;
+    } else {
+        // Guests enter their own name.
+        author = document
+            .getElementById("comment-author").value.trim();
+    }
 
-  if (error) {
-    console.error("Error posting comment:", error);
-    alert("Something went wrong. Please try again.");
-    return;
-  }
+    if (!author || !text) {
+        alert("Please fill out all required fields.");
+        return;
+    }
 
-  // Clear and hide the form
-  commentForm.reset();
-  commentForm.hidden = true;
+    const submitButton = commentForm.querySelector(
+        'button[type="submit"]'
+    );
 
-  document.getElementById("write-comment").textContent =
-    "Write a Comment";
+    submitButton.disabled = true;
 
-  // Reload comments from Supabase
-  await loadComments(postId);
+    try {
+        const { error } = await supabaseClient
+            .from("comments")
+            .insert({
+                post_id: postId,
+                author: author,
+                user_id: userId,
+                text: text
+            });
+
+        if (error) throw error;
+
+        // Reset the form.
+        commentForm.reset();
+        commentForm.hidden = true;
+
+        document.getElementById("write-comment").textContent =
+            "💬 Write a Comment";
+
+        await loadComments(postId);
+
+    } catch (error) {
+        console.error("Error posting comment:", error);
+        alert("Unable to post your comment. Please try again.");
+
+    } finally {
+        submitButton.disabled = false;
+    }
 });
+
 
 
 // Actually call the function to display the information on the page

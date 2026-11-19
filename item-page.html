@@ -1,16 +1,21 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Rex &amp; Found | Rexburg's Community Lost &amp; Found</title>
-  <meta name="description" content="A friendly place for neighbors and students to reunite with the things that matter.">
+  <meta name="description"
+    content="A friendly place for neighbors and students to reunite with the things that matter.">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
   <!-- =====================================================
@@ -25,7 +30,7 @@
       </a>
 
       <nav class="main-nav" aria-label="Main navigation">
-        <a href="index.html" >Home</a>
+        <a href="index.html">Home</a>
         <a href="search.html" class="active">Search posts</a>
         <a href="about.html">About</a>
         <a href="contact.html">Contact</a>
@@ -47,7 +52,7 @@
   <main class="post-page">
     <h1 id="post-title"></h1>
 
-      <!-- Top section -->
+    <!-- Top section -->
     <section class="post-top">
 
       <!-- Left: Post information -->
@@ -87,8 +92,12 @@
       <button class="btn btn-dark btn-sm" id="write-comment">💬 Write a Comment</button>
 
       <form id="comment-form" hidden>
-        <label for="comment-author">Your name</label>
-        <input id="comment-author" required>
+        <div id="comment-author-field">
+          <label for="comment-author">Your Name</label>
+
+          <input type="text" id="comment-author" name="comment-author" maxlength="30"
+            placeholder="How should we call you?">
+        </div>
 
         <label for="comment-text">Your comment</label>
         <textarea id="comment-text" required></textarea>
@@ -138,6 +147,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="js/supabase-config.js"></script>
+<script src="js/auth.js"></script>
 <script src="js/post.js"></script>
 
 </html>

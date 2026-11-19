@@ -92,7 +92,7 @@ function createPostCard(post) {
     } else if (post.status === "found") {
         badge.classList.add("badge-found");
         badge.textContent = "Found";
-    } else if (post.status === "picked up") {
+    } else if (post.status === "picked-up") {
         badge.classList.add("badge-picked");
         badge.textContent = "✓ Picked up";
     }
