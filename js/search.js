@@ -5,7 +5,7 @@ async function loadSearchPosts() {
 
     const { data: posts, error } = await supabaseClient
         .from("posts")
-        .select("id, title, status, location, time_posted, images")
+        .select("id, title, status, location, time_posted, images, category, description")
         .order("time_posted", { ascending: false });
 
     if (error) {
@@ -31,12 +31,20 @@ async function loadSearchPosts() {
     posts.forEach(post => {
         container.appendChild(createSearchCard(post));
     });
+
+    window.applyFilters?.();
 }
 
 // Generate a card using the existing CSS
 function createSearchCard(post) {
     const article = document.createElement("article");
-    article.className = "post-card";
+    article.className = `post-card ${post.status} ${post.category}`;
+    article.dataset.status = (post.status || "").toLowerCase();
+    article.dataset.category = (post.category || "").trim().toLowerCase();
+    article.dataset.search = [post.title, post.location, post.category, post.status, post.description]
+    .filter(Boolean)
+    .join(" ")
+    .toLowerCase();
 
     const link = document.createElement("a");
     link.href = `item-page.html?id=${encodeURIComponent(post.id)}`;

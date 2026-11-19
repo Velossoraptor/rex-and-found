@@ -49,7 +49,7 @@
       <p class="search-lead">Search every lost and found report from around our community.</p>
       <form class="search-bar" action="search.html" role="search">
         <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-        <input type="search" name="q" placeholder="Search items, locations, or keywords..." aria-label="Search posts">
+        <input type="search" id="searchInput" name="q" placeholder="Search items, locations, or keywords..." aria-label="Search posts">
         <button class="btn btn-orange" type="submit">Search</button>
       </form>
     </div>
@@ -58,17 +58,18 @@
   <section class="results container">
     <div class="results-bar">
       <div class="filter-tabs" role="group" aria-label="Filter by status">
-        <button type="button" aria-pressed="true">All</button>
-        <button type="button" aria-pressed="false">Lost</button>
-        <button type="button" aria-pressed="false">Found</button>
+        <button type="button" data-filter="all" aria-pressed="true">All</button>
+        <button type="button" data-filter="lost" aria-pressed="false">Lost</button>
+        <button type="button" data-filter="found" aria-pressed="false">Found</button>
       </div>
-      <select class="filter-select" aria-label="Filter by category">
-        <option>All categories</option>
-        <option>Bags</option>
-        <option>Electronics</option>
-        <option>Keys</option>
-        <option>Clothing</option>
-        <option>Other</option>
+      <select class="filter-select" id="categoryFilter" aria-label="Filter by category">
+        <option value="all">All categories</option>
+        <option value="bags">Bags</option>
+        <option value="keys">Keys</option>
+        <option value="electronics">Electronics</option>
+        <option value="jewelry">Jewelry</option>
+        <option value="clothing">Clothing</option>
+        <option value="other">Other</option>
       </select>
       <p class="results-count" id="results-count">Loading...</p>
     </div>
@@ -76,6 +77,7 @@
     <div class="post-grid" id="search-results">
       <p>Loading Posts...</p>
     </div>
+    <p id="noResults" class="results-count" hidden>No posts match your search. Try different words or clear the filters.</p>
   </section>
 </main>
 
@@ -114,6 +116,7 @@
       </div>
     </div>
   </footer>
+<script src="filter.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="js/supabase-config.js"></script>
 <script src="js/search.js"></script>
