@@ -857,11 +857,12 @@ button, input, select { font: inherit; }
   gap: 10px;
   margin-top: 20px;
   max-width: 500px;
+  padding: 1em;
 }
 
 #comment-form input,
 #comment-form textarea {
-  padding: 10px;
+  padding: 1em;
 }
 
 #post-comment {
@@ -1278,3 +1279,434 @@ padding-bottom: 0px;}
 .linebreak{border-color: #e87f3c;
   background-color: #e87f3c;}
 
+
+/* ========================================
+   LOGIN PAGE
+   ======================================== */
+
+.login-main {
+    min-height: calc(100vh - 100px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 20px;
+    background: #f8f4ed;
+}
+
+.login-card {
+    width: 100%;
+    max-width: 440px;
+    padding: 40px 36px;
+    background: white;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
+}
+
+.login-mascot img {
+    width: 130px;
+    height: 130px;
+    object-fit: contain;
+    margin-bottom: 20px;
+}
+
+.login-card h1 {
+    font-family: "Fraunces", Georgia, serif;
+    font-size: 36px;
+    margin: 12px 0;
+}
+
+.login-description {
+    color: #666;
+    line-height: 1.7;
+    margin-bottom: 28px;
+}
+
+.google-login {
+    width: 100%;
+    cursor: pointer;
+    padding: 15px 20px;
+    font-size: 16px;
+}
+
+.login-note {
+    font-size: 13px;
+    color: #777;
+    margin-top: 24px;
+    line-height: 1.6;
+}
+
+.login-error {
+    color: #b42318;
+    font-size: 14px;
+    margin-top: 12px;
+}
+
+@media (max-width: 480px) {
+    .login-card {
+        padding: 30px 22px;
+    }
+
+    .login-card h1 {
+        font-size: 30px;
+    }
+}
+
+
+/* ==========================================
+   ACCOUNT PAGE
+   ========================================== */
+
+.account-main {
+    min-height: 80vh;
+    padding: 60px 20px;
+    background: #f8f4ed;
+}
+
+.account-container {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.account-card {
+    background: #ffffff;
+    padding: 36px;
+    border-radius: 18px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+}
+
+.account-heading {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 35px;
+}
+
+.account-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: #eee;
+}
+
+.account-heading h1 {
+    font-family: "Fraunces", Georgia, serif;
+    font-size: 32px;
+    margin: 8px 0;
+}
+
+.account-email {
+    color: #777;
+    font-size: 14px;
+}
+
+#profile-form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 1em;
+}
+
+#profile-form label {
+    font-weight: 600;
+}
+
+.field-description {
+    font-size: 14px;
+    color: #777;
+}
+
+#display-name {
+    width: 100%;
+    padding: 13px 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 16px;
+}
+
+#display-name:focus {
+    outline: 2px solid #dc7d45;
+    border-color: transparent;
+}
+
+.profile-message {
+    font-size: 14px;
+    color: #28784e;
+}
+
+.account-footer {
+    border-top: 1px solid #eee;
+    margin-top: 30px;
+    padding-top: 25px;
+}
+
+.btn-outline {
+    background: transparent;
+    color: #333;
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
+
+.btn-outline:hover {
+    background: #f4f4f4;
+}
+
+.account-empty {
+    padding: 35px;
+    background: #f8f4ed;
+    border-radius: 12px;
+    text-align: center;
+    color: #777;
+}
+
+@media (max-width: 600px) {
+    .account-main {
+        padding: 30px 15px;
+    }
+
+    .account-card {
+        padding: 24px;
+    }
+
+    .account-heading {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .account-heading h1 {
+        font-size: 26px;
+    }
+}
+
+
+/* ==========================================
+   ACCOUNT PAGE - MY POSTS
+   ========================================== */
+
+#account-posts {
+    margin-top: 24px;
+}
+
+#account-posts .card-grid {
+    display: grid;
+    grid-template-columns: repeat(
+        auto-fit,
+        minmax(min(100%, 240px), 1fr)
+    );
+    gap: 22px;
+}
+
+.account-post-card {
+    overflow: hidden;
+    transition: transform 0.2s ease,
+                box-shadow 0.2s ease;
+}
+
+.account-post-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+.account-post-card .card-link {
+    display: block;
+    height: 100%;
+}
+
+@media (max-width: 600px) {
+    #account-posts .card-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Account post management buttons */
+
+.account-post-actions {
+    padding: 12px 16px 16px;
+    border-top: 1px solid #eee;
+}
+
+.account-post-actions .btn {
+    width: 100%;
+    cursor: pointer;
+    text-align: center;
+}
+
+.account-post-actions .btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* ==========================================
+   FIX ACCOUNT POST CARD BUTTON VISIBILITY
+   ========================================== */
+
+/* Allow the card to grow to fit its contents */
+.account-post-card {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    min-height: 0;
+    overflow: visible;
+}
+
+/* Let the clickable post area take available space */
+.account-post-card .card-link {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    height: auto;
+    min-height: 0;
+}
+
+/* Keep the image at its intended size */
+.account-post-card .card-img {
+    flex-shrink: 0;
+}
+
+/* Position the action area below the post content */
+.account-post-actions {
+    display: flex;
+    padding: 12px 16px 16px;
+    border-top: 1px solid #eee;
+    background: white;
+    flex-shrink: 0;
+}
+
+/* Make the button fill the action area */
+.account-post-actions .btn {
+    width: 100%;
+    cursor: pointer;
+    text-align: center;
+}
+
+.account-post-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.account-post-actions .btn {
+    flex: 1;
+    min-width: 120px;
+    text-align: center;
+}
+
+.existing-photos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.existing-photo {
+    width: 110px;
+    height: 110px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+}
+
+.existing-photo-wrapper {
+    position: relative;
+    width: 110px;
+}
+
+.existing-photo {
+    width: 110px;
+    height: 110px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+}
+
+.remove-photo-button {
+    display: block;
+    width: 100%;
+    margin-top: 5px;
+    padding: 6px;
+    background: #fce8e6;
+    color: #9b2c2c;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.remove-photo-button:hover {
+    background: #f8d2ce;
+}
+
+.account-archived-label {
+    color: #777;
+    font-size: 14px;
+    text-align: center;
+    width: 100%;
+}
+
+.btn-delete {
+    background: #fff;
+    color: #a12b2b;
+    border: 1px solid #d9a2a2;
+    border-radius: 8px;
+    padding: 10px 14px;
+    cursor: pointer;
+}
+
+.btn-delete:hover {
+    background: #fff0f0;
+}
+
+.btn-delete:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+
+/* ==========================================
+   REX & FOUND COMMENT SYSTEM
+   ========================================== */
+
+.comment-item {
+    padding: 16px;
+    margin-bottom: 12px;
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    border-radius: 12px;
+}
+
+.comment-item strong {
+    margin-right: 10px;
+}
+
+.comment-badge {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.comment-member {
+    background: #e5f3e9;
+    color: #28784e;
+}
+
+.comment-guest {
+    background: #f1f1f1;
+    color: #666;
+}
+
+.comment-item p {
+    margin: 10px 0;
+    line-height: 1.5;
+}
+
+.comment-item small {
+    color: #888;
+    font-size: 12px;
+}
